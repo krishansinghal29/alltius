@@ -2,7 +2,7 @@ import scrapy
 from urllib.parse import urljoin, urlparse
 from typing import Set, Generator
 
-OUTPUT_FILE = 'data/angelone_support_urls1.json'
+OUTPUT_FILE = 'data/angelone_support_urls.json'
 
 class UrlFinder(scrapy.Spider):
     name = 'angelone_support'
@@ -51,7 +51,7 @@ class UrlFinder(scrapy.Spider):
                 }
                 
                 # Follow the link to crawl it recursively
-                yield response.follow(absolute_url, self.parse)
+                # yield response.follow(absolute_url, self.parse)
     
     def is_support_url(self, url: str) -> bool:
         """

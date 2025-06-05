@@ -10,7 +10,7 @@ class AngelOneSupportScraper:
     def __init__(self, spider_class: scrapy.Spider):
         self.spider_class = spider_class
         
-    def run_spider(self, output_file: str = 'angelone_support_data.json'):
+    def run_spider(self, output_file: str = 'data/debug/angelone_support_pages.json'):
         """
         Run the spider and save results to a file.
         
@@ -46,4 +46,4 @@ class AngelOneSupportScraper:
 # Example usage
 if __name__ == '__main__':
     scraper = AngelOneSupportScraper(UrlFinder)
-    scraper.run_spider('data/debug/angelone_support_pages1.json')
+    scraper.run_spider()
