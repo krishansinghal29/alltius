@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Question Answer Agent</h1>
+      <h1>Shoot your questions at me!</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <input
@@ -33,14 +33,17 @@ function App() {
             required
           />
           <button type="submit" disabled={loading}>
-            {loading ? 'Getting Answer...' : 'Ask'}
+            <div className="button-content">
+              {loading && <div className="spinner" />}
+              {loading ? '' : 'Ask'}
+            </div>
           </button>
         </div>
       </form>
       {answer && (
         <div className="answer-box">
-          <h2>Answer:</h2>
-          <p>{answer}</p>
+          <h2>Answer</h2>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{answer}</p>
         </div>
       )}
     </div>
