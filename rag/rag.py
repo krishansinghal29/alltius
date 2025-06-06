@@ -64,9 +64,9 @@ def queryInsurance(query: str) -> str:
     return answer
 
 def getAnswer(query: str) -> str:
-    llm = LLM("gpt-4.1-mini")
+    llm = LLM("gpt-4.1-nano")
     prompt = f"""
-    You are tasked with determining the category of a given query. The query will either be related to AngelOne, a stock buy and sell platform similar to Robinhood or Zerodha, or it will be related to an insurance plan.
+    You are tasked with determining the category of a given query. The query will either be related to AngelOne, a stock buy and sell platform similar to Robinhood or Zerodha, or it will be related to America's choice insurance plans.
 
     Query: {query}
 
