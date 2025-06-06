@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.documents import Document
+from langchain_chroma import Chroma
 from typing import List
 from openai import OpenAI
 
@@ -17,12 +17,12 @@ class RAG:
             embedding_function=self.embeddings
         )
         self.client = OpenAI()
-        self.model = "o4-mini"
+        self.model = "gpt-4.1-mini"
 
     def retrieve_documents(self, query: str) -> List[Document]:
         """Retrieve relevant documents for a given query."""
         retriever = self.vectorstore.as_retriever(search_kwargs={"k": self.retriever_k})
-        return retriever.get_relevant_documents(query)
+        return retriever.invoke(query)
     
     def _generate_user_prompt(self, query: str, documents: List[Document]) -> str:
         """Generate a user prompt for a given query and documents."""
@@ -39,6 +39,7 @@ Remember:
 1. Only use information from the provided documents above
 2. If the information is not in the documents, respond with 'I don't know'
 3. Do not make assumptions or include external knowledge
+4. Just state the answer, do not include as per Document 1, Document 2, etc.
 """
 
         return prompt
@@ -46,6 +47,7 @@ Remember:
     def generate_answer(self, query: str, documents: List[Document]) -> str:
         """Generate an answer to a given query using the retrieved documents."""
         user_prompt = self._generate_user_prompt(query, documents)
+        # print(user_prompt)
         response = self.client.responses.create(
                 model=self.model,
                 input=[
@@ -75,5 +77,4 @@ def queryInsurance(query: str) -> str:
     return answer
 
 if __name__ == "__main__":
-    queryAngelOne("How can I withdraw my money?")
-    
+    print(queryAngelOne("How can I withdraw my money?"))
