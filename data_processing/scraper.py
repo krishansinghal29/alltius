@@ -1,6 +1,6 @@
 import scrapy
 # from spiders.url_finder import UrlFinder
-from spiders.fetch_content import ContentFetcher
+from .spiders.fetch_content import ContentFetcher
 
 # Utility class to run the spider programmatically
 class AngelOneSupportScraper:

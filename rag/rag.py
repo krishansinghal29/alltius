@@ -3,7 +3,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_core.documents import Document
 from langchain_chroma import Chroma
 from typing import List
-from llm import LLM
+from rag.llm import LLM
 from pydantic import BaseModel
 
 load_dotenv()
